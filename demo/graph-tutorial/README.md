@@ -1,4 +1,4 @@
-# vue-3-study
+# Vue 3 Graph Demo
 
 ## Project setup
 ```
