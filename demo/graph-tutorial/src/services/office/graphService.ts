@@ -1,5 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 const graph = require("@microsoft/microsoft-graph-client");
 
 const getAuthenticatedClient = (accessToken: string) => {
