@@ -16,7 +16,6 @@ import { defineComponent, reactive } from "vue";
 import { useGraph } from "@/use/graph.ts";
 import { getAccessToken } from "@/services/office/authService.ts";
 import { getMessages } from "@/services/office/graphService.ts";
-import { graphMessages } from "@/services/office/graphTypes";
 import EmailItem from "@/components/email/EmailItem.vue";
 
 export default defineComponent({
@@ -30,7 +29,7 @@ export default defineComponent({
       userAgentApplication.value,
       auth.value.scopes
     );
-    const messages: graphMessages = await getMessages(token);
+    const messages = await getMessages(token);
 
     const state = reactive({
       list: messages.value

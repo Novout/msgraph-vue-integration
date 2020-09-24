@@ -1,20 +1,18 @@
-import {Module} from "vuex";
-
-export interface graphMessageBody {
+interface graphMessageBody {
     "contentType"?: string,
     "content": string
 }
 
-export interface graphMessageEmailOwner {
+interface graphMessageEmailOwner {
     "name": string,
     "address": string
 }
 
-export interface graphMessageSender {
+interface graphMessageSender {
     "emailAddress": graphMessageEmailOwner
 }
 
-export interface graphMessageFlagStatus {
+interface graphMessageFlagStatus {
     "flagStatus"?: string
 }
 
