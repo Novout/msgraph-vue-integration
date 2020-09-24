@@ -1,18 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "@/views/Home.vue";
-import Email from "@/views/Email.vue";
 import { useStore } from "@/use/store";
+
+const syncHome = () => import("@/views/Home.vue");
+const syncEmail = () => import("@/views/Email.vue");
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: syncHome
   },
   {
     path: "/email",
     name: "Email",
-    component: Email,
+    component: syncEmail,
     // basic route navigation guard
     beforeEnter(to, from, next) {
       // check vuex store authenticated //
