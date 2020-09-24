@@ -1,7 +1,8 @@
 <template>
-  <AuthProvider />
-  <Header />
-  <router-view />
+  <AuthProvider>
+    <Header />
+    <router-view />
+  </AuthProvider>
 </template>
 
 <script lang="ts">
