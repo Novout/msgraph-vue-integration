@@ -6,6 +6,7 @@ import { getUserDetails } from "@/services/office/graphService";
 import { getAccessToken } from "@/services/office/authService";
 import { useConfig } from "@/use/graph";
 import { AuthResponse } from "msal";
+import {graphUserDetails} from "@/services/office/graphTypes";
 
 export type ActionsType = {
   [ActionTypes.SET_ACCESS_TOKEN](context: ActionContext<State, State>): void;
@@ -16,7 +17,7 @@ export type ActionsType = {
 export const actions: ActionTree<State, State> & ActionsType = {
   [ActionTypes.SET_ACCESS_TOKEN]({ commit, state }: ActionContext<State, State>) {
     if (state.auth.accessToken) {
-      new Promise<string>(resolve => {
+      new Promise<graphUserDetails>(resolve => {
         resolve(getUserDetails(state.auth.accessToken));
       })
         .then(user => {
@@ -30,7 +31,7 @@ export const actions: ActionTree<State, State> & ActionsType = {
   [ActionTypes.GET_USER_PROFILE]({ commit, state }: ActionContext<State, State>) {
     commit(MutationTypes.SET_SPINNER_LOGIN);
     if (state.auth.accessToken) {
-      new Promise<void>(resolve => {
+      new Promise<graphUserDetails>(resolve => {
         resolve(getUserDetails(state.auth.accessToken));
       })
         .then(user => {
@@ -49,7 +50,7 @@ export const actions: ActionTree<State, State> & ActionsType = {
             `msal.${useConfig().AUTH_ID}.accessToken`,
             accessToken
           );
-          new Promise<any>(resolve => {
+          new Promise<graphUserDetails>(resolve => {
             resolve(getUserDetails(accessToken));
           })
             .then(user => {

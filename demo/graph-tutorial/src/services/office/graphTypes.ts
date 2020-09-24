@@ -55,3 +55,18 @@ export interface graphMessages {
     "value": Array<graphMessageValue>
 }
 
+export interface graphUserDetails {
+    "@odata.context"?: string,
+    "displayName"?: string,
+    "surname"?: string,
+    "givenName"?: string,
+    "id"?: string,
+    "userPrincipalName"?: string,
+    "businessPhones"?: Array<any>,
+    "jobTitle"?: string | null,
+    "mail": string | null,
+    "mobilePhone": string | null,
+    "officeLocation": string | null,
+    "preferredLanguage": string | null
+}
+

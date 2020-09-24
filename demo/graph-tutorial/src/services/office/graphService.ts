@@ -1,4 +1,4 @@
-import { graphMessages } from "@/services/office/graphTypes";
+import {graphMessages, graphUserDetails} from "@/services/office/graphTypes";
 
 const graph = require("@microsoft/microsoft-graph-client");
 
@@ -15,10 +15,10 @@ const getAuthenticatedClient = (accessToken: string) => {
   return client;
 };
 
-export const getUserDetails = (accessToken: string): Promise<any> => {
+export const getUserDetails = (accessToken: string): Promise<graphUserDetails> => {
   const client = getAuthenticatedClient(accessToken);
 
-  return new Promise<any>(resolve => {
+  return new Promise<graphUserDetails>(resolve => {
     resolve(client.api("/me").get());
   }).then(user => {
     return user;
