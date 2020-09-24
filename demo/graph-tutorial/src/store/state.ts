@@ -15,7 +15,7 @@ export interface Auth {
   isAuthenticated: boolean;
   error: object | undefined | null;
   scopes: Array<string>;
-  accessToken: string | boolean;
+  accessToken: string;
   spinner: Spinner;
 }
 
@@ -34,7 +34,7 @@ export const state: State = {
     error: null,
     scopes: ["user.read", "calendars.read"],
     accessToken:
-      localStorage.getItem(`msal.${useConfig().AUTH_ID}.accessToken`) || false,
+      localStorage.getItem(`msal.${useConfig().AUTH_ID}.accessToken`) || "",
     spinner: {
       login: false
     }

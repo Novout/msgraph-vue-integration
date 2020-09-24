@@ -1,5 +1,5 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import { graphMessages } from "@/services/office/graphTypes";
+
 const graph = require("@microsoft/microsoft-graph-client");
 
 const getAuthenticatedClient = (accessToken: string) => {
@@ -18,17 +18,17 @@ const getAuthenticatedClient = (accessToken: string) => {
 export const getUserDetails = (accessToken: string): Promise<any> => {
   const client = getAuthenticatedClient(accessToken);
 
-  return new Promise(resolve => {
+  return new Promise<any>(resolve => {
     resolve(client.api("/me").get());
   }).then(user => {
     return user;
   });
 };
 
-export const getMessages = (accessToken: string): Promise<any> => {
+export const getMessages = (accessToken: string): Promise<graphMessages> => {
   const client = getAuthenticatedClient(accessToken);
 
-  return new Promise(resolve => {
+  return new Promise<graphMessages>(resolve => {
     resolve(client.api("/me/messages").get());
   }).then(messages => {
     return messages;

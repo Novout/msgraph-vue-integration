@@ -5,15 +5,16 @@ import { MutationTypes } from "@/store/mutation-types";
 import { getUserDetails } from "@/services/office/graphService";
 import { getAccessToken } from "@/services/office/authService";
 import { useConfig } from "@/use/graph";
+import { AuthResponse } from "msal/lib-commonjs/AuthResponse";
 
 export type ActionsType = {
-  [ActionTypes.SET_ACCESS_TOKEN](context: ActionContext<any, any>): void;
-  [ActionTypes.GET_USER_PROFILE](context: ActionContext<any, any>): void;
-  [ActionTypes.USER_AGENT_LOGIN](context: ActionContext<any, any>): void;
+  [ActionTypes.SET_ACCESS_TOKEN](context: ActionContext<State, State>): void;
+  [ActionTypes.GET_USER_PROFILE](context: ActionContext<State, State>): void;
+  [ActionTypes.USER_AGENT_LOGIN](context: ActionContext<State, State>): void;
 };
 
 export const actions: ActionTree<State, State> & ActionsType = {
-  [ActionTypes.SET_ACCESS_TOKEN]({ commit, state }) {
+  [ActionTypes.SET_ACCESS_TOKEN]({ commit, state }: ActionContext<State, State>) {
     if (state.auth.accessToken) {
       new Promise<string>(resolve => {
         resolve(getUserDetails(state.auth.accessToken));
@@ -26,7 +27,7 @@ export const actions: ActionTree<State, State> & ActionsType = {
         });
     }
   },
-  [ActionTypes.GET_USER_PROFILE]({ commit, state }) {
+  [ActionTypes.GET_USER_PROFILE]({ commit, state }: ActionContext<State, State>) {
     commit(MutationTypes.SET_SPINNER_LOGIN);
     if (state.auth.accessToken) {
       new Promise<void>(resolve => {
@@ -63,8 +64,8 @@ export const actions: ActionTree<State, State> & ActionsType = {
         });
     }
   },
-  [ActionTypes.USER_AGENT_LOGIN]({ commit, state, dispatch }) {
-    new Promise<void>(resolve => {
+  [ActionTypes.USER_AGENT_LOGIN]({ commit, state, dispatch }: ActionContext<State, State>) {
+    new Promise<AuthResponse | void>(resolve => {
       resolve(
         state.userAgentApplication.loginPopup({
           scopes: state.auth.scopes,
