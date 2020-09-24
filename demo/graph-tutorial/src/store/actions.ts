@@ -5,7 +5,7 @@ import { MutationTypes } from "@/store/mutation-types";
 import { getUserDetails } from "@/services/office/graphService";
 import { getAccessToken } from "@/services/office/authService";
 import { useConfig } from "@/use/graph";
-import { AuthResponse } from "msal/lib-commonjs/AuthResponse";
+import { AuthResponse } from "msal";
 
 export type ActionsType = {
   [ActionTypes.SET_ACCESS_TOKEN](context: ActionContext<State, State>): void;
