@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import Loading from "@/components/loading/Loading.vue";
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
   },
   props: {
     description: {
-      type: String,
+      type: String as PropType<string>,
       required: true
     }
   }
