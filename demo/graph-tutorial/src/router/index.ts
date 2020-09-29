@@ -1,31 +1,37 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { useStore } from "@/use/store";
 
-const syncHome = () => import("@/views/Home.vue");
-const syncEmail = () => import("@/views/Email.vue");
+const SyncHome = () => import("@/views/Home.vue");
+const SyncEmail = () => import("@/views/Email.vue");
+const SyncNotFound = () => import("@/views/NotFound.vue");
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: syncHome
+    component: SyncHome
   },
   {
     path: "/email",
     name: "Email",
-    component: syncEmail,
+    component: SyncEmail,
     // basic route navigation guard
     beforeEnter(to, from, next) {
-      // check vuex store authenticated //
+      // check vuex store authenticated
       if (useStore().state.auth.isAuthenticated) {
+        // continue next route
         next();
-      } else {
-        // return home route with no authenticated
-        next({
-          name: "Home"
-        });
       }
+
+      // redirect to Home route
+      next({
+        name: "Home"
+      });
     }
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: SyncNotFound
   }
 ];
 
