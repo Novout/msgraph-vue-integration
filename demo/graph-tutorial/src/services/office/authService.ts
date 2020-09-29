@@ -45,19 +45,3 @@ export const getAccessToken = (
         });
     });
 };
-
-export const normalizeError = async (error: any) => {
-  let normalizedError = {};
-  if (typeof error === "string") {
-    const errParts = error.split("|");
-    normalizedError =
-      errParts.length > 1
-        ? { message: errParts[1], debug: errParts[0] }
-        : { message: error };
-  } else {
-    normalizedError = {
-      debug: JSON.stringify(error)
-    };
-  }
-  return normalizedError;
-};
