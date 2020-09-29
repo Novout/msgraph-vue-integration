@@ -20,19 +20,11 @@ export const getUserDetails = (
 ): Promise<GraphUserDetails> => {
   const client = getAuthenticatedClient(accessToken);
 
-  return new Promise<GraphUserDetails>(resolve => {
-    resolve(client.api("/me").get());
-  }).then(user => {
-    return user;
-  });
+  return Promise.resolve(client.api("/me").get());
 };
 
 export const getMessages = (accessToken: string): Promise<GraphMessages> => {
   const client = getAuthenticatedClient(accessToken);
 
-  return new Promise<GraphMessages>(resolve => {
-    resolve(client.api("/me/messages").get());
-  }).then(messages => {
-    return messages;
-  });
+  return Promise.resolve(client.api("/me/messages").get());
 };
