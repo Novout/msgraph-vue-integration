@@ -1,7 +1,5 @@
 # Vue 3 Graph Demo
 
-![App Image](/tutorial/images/landing.png)
-
 ## Project setup
 ```
 yarn install
