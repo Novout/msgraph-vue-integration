@@ -14,7 +14,7 @@ export const useGraph = () => {
 
 export const useConfig = () => {
   const REDIRECT_URI = "http://localhost:3000";
-  const AUTH_ID = "a1a3eb0a-41a9-4a00-adf3-865482f1aa18";
+  const AUTH_ID = "YOUR_KEY_HERE";
 
   return {
     REDIRECT_URI,
